@@ -79,10 +79,22 @@ html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
     border-radius: 8px; padding: 0.6rem 1rem; margin: 0.25rem 0;
     display: flex; justify-content: space-between; align-items: center; font-size: 0.88rem;
 }
+.stats-auto-box {
+    background: linear-gradient(135deg, rgba(0,200,100,0.08), rgba(0,229,255,0.05));
+    border: 1px solid rgba(0,200,100,0.2);
+    border-radius: 12px; padding: 1rem 1.2rem; margin: 0.5rem 0;
+    font-size: 0.82rem; color: #8ab4c8;
+}
+.stats-auto-box strong { color: #00c864; }
 .db-badge {
     background: rgba(0,200,100,0.1); border: 1px solid rgba(0,200,100,0.3);
     border-radius: 20px; padding: 0.2rem 0.8rem; font-size: 0.7rem;
     color: #00c864; font-weight: 600; letter-spacing: 1px;
+}
+.auto-badge {
+    background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.3);
+    border-radius: 20px; padding: 0.15rem 0.7rem; font-size: 0.65rem;
+    color: #00e5ff; font-weight: 600; letter-spacing: 1px; margin-left: 0.5rem;
 }
 div.stButton > button {
     width: 100%; background: linear-gradient(135deg, #00c864, #00a050); color: #000;
@@ -98,16 +110,14 @@ div.stButton > button:hover {
 """, unsafe_allow_html=True)
 
 # ──────────────────────────────────────────────
-# SUPABASE VÍA REST API (sin librería supabase-py)
+# SUPABASE REST API
 # ──────────────────────────────────────────────
-
 def get_headers():
     key = st.secrets["SUPABASE_KEY"]
     return {
         "apikey": key,
         "Authorization": f"Bearer {key}",
         "Content-Type": "application/json",
-        "Prefer": "return=minimal"
     }
 
 def sb_get(table: str, params: dict = None):
@@ -116,7 +126,6 @@ def sb_get(table: str, params: dict = None):
         r = httpx.get(url, headers=get_headers(), params=params, timeout=10)
         return r.json() if r.status_code == 200 else []
     except Exception as e:
-        st.error(f"Error BD ({table}): {e}")
         return []
 
 def sb_post(table: str, data: dict):
@@ -124,30 +133,93 @@ def sb_post(table: str, data: dict):
     try:
         r = httpx.post(url, headers=get_headers(), json=data, timeout=10)
         return r.status_code in [200, 201]
-    except Exception as e:
-        st.warning(f"No se pudo guardar: {e}")
+    except:
         return False
 
 def get_equipos():
     return sb_get("equipos", {"select": "*", "order": "nombre.asc"})
 
-def get_partidos_equipo(nombre: str):
+def get_todos_partidos_equipo(nombre: str):
+    """Obtiene TODOS los partidos de un equipo para calcular estadísticas."""
     local = sb_get("partidos_ucl", {
         "select": "*",
         "equipo_local": f"eq.{nombre}",
         "goles_local": "not.is.null",
         "order": "fecha.desc",
-        "limit": "5"
+        "limit": "20"
     })
     visit = sb_get("partidos_ucl", {
         "select": "*",
         "equipo_visitante": f"eq.{nombre}",
         "goles_visitante": "not.is.null",
         "order": "fecha.desc",
-        "limit": "5"
+        "limit": "20"
     })
     partidos = (local or []) + (visit or [])
     partidos.sort(key=lambda x: x.get("fecha", ""), reverse=True)
+    return partidos
+
+def calcular_stats_automaticas(nombre: str, partidos: list):
+    """
+    Calcula ataque, defensa, xG y forma automáticamente
+    basado en los últimos partidos reales de UCL.
+    """
+    if not partidos:
+        return None
+
+    ultimos = partidos[:8]  # máximo 8 partidos para el cálculo
+
+    goles_marcados = []
+    goles_recibidos = []
+    puntos = []
+
+    for p in ultimos:
+        es_local = p["equipo_local"] == nombre
+        gl = p.get("goles_local", 0) or 0
+        gv = p.get("goles_visitante", 0) or 0
+
+        if es_local:
+            goles_marcados.append(gl)
+            goles_recibidos.append(gv)
+            if gl > gv:   puntos.append(3)
+            elif gl == gv: puntos.append(1)
+            else:          puntos.append(0)
+        else:
+            goles_marcados.append(gv)
+            goles_recibidos.append(gl)
+            if gv > gl:   puntos.append(3)
+            elif gv == gl: puntos.append(1)
+            else:          puntos.append(0)
+
+    avg_marcados  = sum(goles_marcados) / len(goles_marcados) if goles_marcados else 1.5
+    avg_recibidos = sum(goles_recibidos) / len(goles_recibidos) if goles_recibidos else 1.3
+    avg_puntos    = sum(puntos) / len(puntos) if puntos else 1.5
+
+    # Ataque: normalizado entre 0.5 y 3.5
+    ataque = max(0.5, min(3.5, round(avg_marcados * 0.85 + 0.3, 2)))
+
+    # Defensa: inversamente proporcional a goles recibidos
+    # menos goles recibidos = mejor defensa (valor más bajo)
+    defensa = max(0.5, min(3.5, round(avg_recibidos * 0.75 + 0.4, 2)))
+
+    # xG: correlacionado con goles marcados + pequeño ajuste
+    xg = max(0.5, min(3.5, round(avg_marcados * 0.80 + 0.25, 2)))
+
+    # Forma: basado en puntos promedio (máx 3 = 1.2, min 0 = 0.8)
+    forma = round(0.8 + (avg_puntos / 3.0) * 0.4, 2)
+    forma = max(0.8, min(1.2, forma))
+
+    return {
+        "ataque":   ataque,
+        "defensa":  defensa,
+        "xg":       xg,
+        "forma":    forma,
+        "partidos_usados": len(ultimos),
+        "avg_goles_marcados":  round(avg_marcados, 2),
+        "avg_goles_recibidos": round(avg_recibidos, 2),
+    }
+
+def get_ultimos_5(partidos: list):
     return partidos[:5]
 
 def get_todos_partidos(fase: str = None):
@@ -207,7 +279,7 @@ def top_marcadores(gl, gv, top=5):
 st.markdown("""
 <div class="main-header">
     <h1>⚽ UCL 25/26 PREDICTOR</h1>
-    <p>Supabase · Poisson · Monte Carlo 50,000 Iteraciones · Datos Reales Champions</p>
+    <p>Supabase · Poisson · Monte Carlo 50,000 Iteraciones · Stats Automáticas</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -227,8 +299,6 @@ try:
         nombres_equipos = [e["nombre"] for e in equipos_db]
         equipos_dict = {e["nombre"]: e for e in equipos_db}
         db_ok = True
-    else:
-        st.error("⚠️ Supabase conectado pero sin datos. ¿Ejecutaste el SQL?")
 except Exception as e:
     st.error(f"⚠️ Error conectando Supabase: {e}")
 
@@ -249,59 +319,112 @@ with tab_pred:
 
     col_l, col_m, col_r = st.columns([5, 1, 5])
 
+    # ── EQUIPO LOCAL ──
     with col_l:
         st.markdown("**🏠 Equipo Local**")
         if nombres_equipos:
             idx_l = nombres_equipos.index("Real Madrid") if "Real Madrid" in nombres_equipos else 0
             sel_local = st.selectbox("Equipo local", nombres_equipos, index=idx_l, key="sel_local")
-            eq_l = equipos_dict.get(sel_local, {})
         else:
             sel_local = st.text_input("Nombre equipo local", "Real Madrid")
-            eq_l = {}
         nombre_local = sel_local
+
+        # Calcular stats automáticas
+        partidos_local_todos = get_todos_partidos_equipo(nombre_local) if db_ok else []
+        stats_l = calcular_stats_automaticas(nombre_local, partidos_local_todos)
+        eq_l = equipos_dict.get(nombre_local, {})
+
+        # Valores por defecto: stats automáticas > BD > fallback
+        if stats_l:
+            def_atk_l  = stats_l["ataque"]
+            def_def_l  = stats_l["defensa"]
+            def_xg_l   = stats_l["xg"]
+            def_forma_l = stats_l["forma"]
+            st.markdown(f"""
+            <div class="stats-auto-box">
+                📊 <strong>Stats calculadas automáticamente</strong>
+                <span class="auto-badge">AUTO</span><br>
+                Basadas en <strong>{stats_l['partidos_usados']} partidos UCL</strong> &nbsp;·&nbsp;
+                ⚽ {stats_l['avg_goles_marcados']} goles/partido &nbsp;·&nbsp;
+                🛡️ {stats_l['avg_goles_recibidos']} recibidos/partido
+            </div>""", unsafe_allow_html=True)
+        else:
+            def_atk_l   = float(eq_l.get("ataque", 1.8))
+            def_def_l   = float(eq_l.get("defensa", 1.3))
+            def_xg_l    = float(eq_l.get("xg_promedio", 1.6))
+            def_forma_l = float(eq_l.get("forma", 1.05))
+            st.info("ℹ️ Sin datos suficientes — usando valores de la BD")
+
         c1, c2 = st.columns(2)
         with c1:
-            ataque_local  = st.slider("⚔️ Ataque",  0.5, 3.5, float(eq_l.get("ataque", 1.8)),      0.05, key="atk_l")
-            xg_local      = st.slider("🎯 xG",      0.5, 3.5, float(eq_l.get("xg_promedio", 1.6)), 0.05, key="xg_l")
-            forma_local   = st.slider("📈 Forma",   0.8, 1.2, float(eq_l.get("forma", 1.05)),       0.01, key="forma_l")
+            ataque_local  = st.slider("⚔️ Ataque",  0.5, 3.5, def_atk_l,   0.05, key="atk_l")
+            xg_local      = st.slider("🎯 xG",      0.5, 3.5, def_xg_l,    0.05, key="xg_l")
+            forma_local   = st.slider("📈 Forma",   0.8, 1.2, def_forma_l, 0.01, key="forma_l")
         with c2:
-            defensa_local = st.slider("🛡️ Defensa", 0.5, 3.5, float(eq_l.get("defensa", 1.3)),     0.05, key="def_l")
+            defensa_local = st.slider("🛡️ Defensa", 0.5, 3.5, def_def_l,   0.05, key="def_l")
 
     with col_m:
-        st.markdown('<div class="vs-badge" style="margin-top:4rem">VS</div>', unsafe_allow_html=True)
+        st.markdown('<div class="vs-badge" style="margin-top:6rem">VS</div>', unsafe_allow_html=True)
 
+    # ── EQUIPO VISITANTE ──
     with col_r:
         st.markdown("**✈️ Equipo Visitante**")
         if nombres_equipos:
             idx_v = nombres_equipos.index("Manchester City") if "Manchester City" in nombres_equipos else 1
             sel_away = st.selectbox("Equipo visitante", nombres_equipos, index=idx_v, key="sel_away")
-            eq_v = equipos_dict.get(sel_away, {})
         else:
             sel_away = st.text_input("Nombre equipo visitante", "Manchester City")
-            eq_v = {}
         nombre_visitante = sel_away
+
+        partidos_visit_todos = get_todos_partidos_equipo(nombre_visitante) if db_ok else []
+        stats_v = calcular_stats_automaticas(nombre_visitante, partidos_visit_todos)
+        eq_v = equipos_dict.get(nombre_visitante, {})
+
+        if stats_v:
+            def_atk_v   = stats_v["ataque"]
+            def_def_v   = stats_v["defensa"]
+            def_xg_v    = stats_v["xg"]
+            def_forma_v = stats_v["forma"]
+            st.markdown(f"""
+            <div class="stats-auto-box">
+                📊 <strong>Stats calculadas automáticamente</strong>
+                <span class="auto-badge">AUTO</span><br>
+                Basadas en <strong>{stats_v['partidos_usados']} partidos UCL</strong> &nbsp;·&nbsp;
+                ⚽ {stats_v['avg_goles_marcados']} goles/partido &nbsp;·&nbsp;
+                🛡️ {stats_v['avg_goles_recibidos']} recibidos/partido
+            </div>""", unsafe_allow_html=True)
+        else:
+            def_atk_v   = float(eq_v.get("ataque", 1.7))
+            def_def_v   = float(eq_v.get("defensa", 1.4))
+            def_xg_v    = float(eq_v.get("xg_promedio", 1.5))
+            def_forma_v = float(eq_v.get("forma", 1.0))
+            st.info("ℹ️ Sin datos suficientes — usando valores de la BD")
+
         c3, c4 = st.columns(2)
         with c3:
-            ataque_visit  = st.slider("⚔️ Ataque",  0.5, 3.5, float(eq_v.get("ataque", 1.7)),      0.05, key="atk_v")
-            xg_visit      = st.slider("🎯 xG",      0.5, 3.5, float(eq_v.get("xg_promedio", 1.5)), 0.05, key="xg_v")
-            forma_visit   = st.slider("📈 Forma",   0.8, 1.2, float(eq_v.get("forma", 1.0)),        0.01, key="forma_v")
+            ataque_visit  = st.slider("⚔️ Ataque",  0.5, 3.5, def_atk_v,   0.05, key="atk_v")
+            xg_visit      = st.slider("🎯 xG",      0.5, 3.5, def_xg_v,    0.05, key="xg_v")
+            forma_visit   = st.slider("📈 Forma",   0.8, 1.2, def_forma_v, 0.01, key="forma_v")
         with c4:
-            defensa_visit = st.slider("🛡️ Defensa", 0.5, 3.5, float(eq_v.get("defensa", 1.4)),     0.05, key="def_v")
+            defensa_visit = st.slider("🛡️ Defensa", 0.5, 3.5, def_def_v,   0.05, key="def_v")
 
     # Últimos 5 partidos
     if db_ok:
         st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
         st.markdown('<div class="section-title">📅 ÚLTIMOS 5 PARTIDOS EN UCL 25/26</div>', unsafe_allow_html=True)
         p_col1, p_col2 = st.columns(2)
-        for col, nombre in [(p_col1, nombre_local), (p_col2, nombre_visitante)]:
+        for col, nombre, partidos_todos in [
+            (p_col1, nombre_local, partidos_local_todos),
+            (p_col2, nombre_visitante, partidos_visit_todos)
+        ]:
             with col:
                 st.markdown(f"**{nombre}**")
-                partidos = get_partidos_equipo(nombre)
-                if partidos:
-                    for p in partidos:
+                ultimos5 = get_ultimos_5(partidos_todos)
+                if ultimos5:
+                    for p in ultimos5:
                         es_local = p["equipo_local"] == nombre
                         rival = p["equipo_visitante"] if es_local else p["equipo_local"]
-                        gl, gv = p.get("goles_local"), p.get("goles_visitante")
+                        gl, gv = p.get("goles_local", 0), p.get("goles_visitante", 0)
                         if es_local:
                             marcador = f"{gl} – {gv}"
                             res = "✅" if gl > gv else ("🟡" if gl == gv else "❌")
@@ -358,7 +481,7 @@ with tab_pred:
             })
             st.markdown('<span class="db-badge">✅ SIMULACIÓN GUARDADA EN BD</span>', unsafe_allow_html=True)
 
-        # Probabilidades 1X2
+        # Probabilidades
         st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
         st.markdown('<div class="section-title">📊 PROBABILIDADES</div>', unsafe_allow_html=True)
         vl, emp, vv = probs["victoria_local"], probs["empate"], probs["victoria_visitante"]
@@ -431,10 +554,10 @@ with tab_pred:
         st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
         st.markdown("""
         <div class="explanation-box">
-            <strong>📖 Metodología:</strong> Combina Ataque/Defensa (60%) + xG (40%), con modificadores de forma,
-            ventaja local (+12%), intensidad Champions y factor de regresión.
-            50,000 simulaciones Monte Carlo con distribución de Poisson.
-            Resultados guardados automáticamente en Supabase.
+            <strong>📖 Metodología:</strong> Las estadísticas de ataque, defensa, xG y forma se calculan
+            <strong>automáticamente</strong> a partir de los partidos reales de UCL 25/26 almacenados en Supabase.
+            El modelo combina Ataque/Defensa (60%) + xG (40%) con modificadores de forma, ventaja local (+12%),
+            intensidad Champions y factor de regresión. Se ejecutan 50,000 simulaciones Monte Carlo con distribución de Poisson.
         </div>""", unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════
