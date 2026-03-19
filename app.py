@@ -510,6 +510,11 @@ def render_resultados_simulacion(probs, over_c, over_t, top5, lam_l, lam_v, nl, 
                 st.success("✅ Predicción guardada")
 
 # ══════════════════════════════════════════════════════════════
+# ══════════════════════════════════════════════════════════════
+# CONSTANTES GLOBALES
+# ══════════════════════════════════════════════════════════════
+res_map = {"W": "✅", "D": "🟡", "L": "❌"}
+
 # INICIALIZACIÓN
 # ══════════════════════════════════════════════════════════════
 
@@ -658,7 +663,6 @@ if pagina == "🏆 UCL — Simulador":
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
     st.markdown('<div class="section-title">📅 ÚLTIMOS 5 PARTIDOS UCL</div>', unsafe_allow_html=True)
     p1, p2 = st.columns(2)
-    res_map = {"W": "✅", "D": "🟡", "L": "❌"}
     for col, nombre, stats in [(p1, nombre_local, stats_l), (p2, nombre_visitante, stats_v)]:
         with col:
             st.markdown(f"**{nombre}**")
