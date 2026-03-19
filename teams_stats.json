@@ -1,0 +1,106 @@
+{
+  "ultima_actualizacion": "2026-03-19",
+  "fase_actual": "Cuartos de Final",
+  "equipos": {
+    "Real Madrid": {
+      "clasificado": true,
+      "ultimos_5": [
+        {"fecha": "2026-03-17", "rival": "Manchester City", "gf": 2, "gc": 1, "resultado": "W", "corners": 7, "tarjetas": 3},
+        {"fecha": "2026-03-11", "rival": "Manchester City", "gf": 3, "gc": 0, "resultado": "W", "corners": 8, "tarjetas": 2},
+        {"fecha": "2026-01-20", "rival": "Monaco",          "gf": 6, "gc": 1, "resultado": "W", "corners": 11, "tarjetas": 2},
+        {"fecha": "2025-12-10", "rival": "Manchester City", "gf": 1, "gc": 2, "resultado": "L", "corners": 6, "tarjetas": 4},
+        {"fecha": "2025-11-05", "rival": "Olympiacos",      "gf": 4, "gc": 3, "resultado": "W", "corners": 9, "tarjetas": 3}
+      ]
+    },
+    "Arsenal": {
+      "clasificado": true,
+      "ultimos_5": [
+        {"fecha": "2026-03-17", "rival": "Bayer Leverkusen", "gf": 2, "gc": 0, "resultado": "W", "corners": 9, "tarjetas": 3},
+        {"fecha": "2026-03-11", "rival": "Bayer Leverkusen", "gf": 1, "gc": 1, "resultado": "D", "corners": 8, "tarjetas": 4},
+        {"fecha": "2026-01-20", "rival": "Inter",            "gf": 3, "gc": 1, "resultado": "W", "corners": 10, "tarjetas": 2},
+        {"fecha": "2025-12-10", "rival": "Club Brugge",      "gf": 3, "gc": 0, "resultado": "W", "corners": 12, "tarjetas": 1},
+        {"fecha": "2025-11-26", "rival": "Bayern München",   "gf": 3, "gc": 1, "resultado": "W", "corners": 8, "tarjetas": 3}
+      ]
+    },
+    "PSG": {
+      "clasificado": true,
+      "ultimos_5": [
+        {"fecha": "2026-03-17", "rival": "Chelsea",         "gf": 3, "gc": 0, "resultado": "W", "corners": 10, "tarjetas": 2},
+        {"fecha": "2026-03-11", "rival": "Chelsea",         "gf": 5, "gc": 2, "resultado": "W", "corners": 11, "tarjetas": 3},
+        {"fecha": "2026-01-21", "rival": "Tottenham",       "gf": 5, "gc": 3, "resultado": "W", "corners": 12, "tarjetas": 4},
+        {"fecha": "2025-11-25", "rival": "Bayer Leverkusen","gf": 7, "gc": 2, "resultado": "W", "corners": 14, "tarjetas": 3},
+        {"fecha": "2025-10-01", "rival": "Bayer Leverkusen","gf": 7, "gc": 2, "resultado": "W", "corners": 13, "tarjetas": 2}
+      ]
+    },
+    "Sporting CP": {
+      "clasificado": true,
+      "ultimos_5": [
+        {"fecha": "2026-03-17", "rival": "Bodø/Glimt",     "gf": 5, "gc": 0, "resultado": "W", "corners": 10, "tarjetas": 3},
+        {"fecha": "2026-03-11", "rival": "Bodø/Glimt",     "gf": 0, "gc": 3, "resultado": "L", "corners": 7,  "tarjetas": 4},
+        {"fecha": "2025-12-09", "rival": "Bayern München",  "gf": 1, "gc": 3, "resultado": "L", "corners": 6,  "tarjetas": 3},
+        {"fecha": "2025-11-26", "rival": "Club Brugge",     "gf": 2, "gc": 0, "resultado": "W", "corners": 9,  "tarjetas": 2},
+        {"fecha": "2025-10-22", "rival": "PSV Eindhoven",   "gf": 2, "gc": 1, "resultado": "W", "corners": 8,  "tarjetas": 3}
+      ]
+    },
+    "Barcelona": {
+      "clasificado": false,
+      "ultimos_5": [
+        {"fecha": "2026-03-11", "rival": "Newcastle United","gf": 1, "gc": 1, "resultado": "D", "corners": 9,  "tarjetas": 3},
+        {"fecha": "2025-12-09", "rival": "Eintracht Frankfurt","gf": 2, "gc": 1, "resultado": "W", "corners": 10, "tarjetas": 2},
+        {"fecha": "2025-11-04", "rival": "Chelsea",         "gf": 0, "gc": 3, "resultado": "L", "corners": 7,  "tarjetas": 4},
+        {"fecha": "2025-10-01", "rival": "Olympiacos",      "gf": 6, "gc": 1, "resultado": "W", "corners": 13, "tarjetas": 2},
+        {"fecha": "2025-09-18", "rival": "Newcastle United","gf": 2, "gc": 1, "resultado": "W", "corners": 9,  "tarjetas": 3}
+      ]
+    },
+    "Atlético de Madrid": {
+      "clasificado": false,
+      "ultimos_5": [
+        {"fecha": "2026-03-10", "rival": "Tottenham",       "gf": 5, "gc": 2, "resultado": "W", "corners": 8,  "tarjetas": 5},
+        {"fecha": "2026-01-21", "rival": "Galatasaray",     "gf": 1, "gc": 1, "resultado": "D", "corners": 7,  "tarjetas": 4},
+        {"fecha": "2025-12-09", "rival": "PSV Eindhoven",   "gf": 3, "gc": 2, "resultado": "W", "corners": 9,  "tarjetas": 3},
+        {"fecha": "2025-11-26", "rival": "Atlético de Madrid","gf": 2, "gc": 1, "resultado": "W", "corners": 8,  "tarjetas": 4},
+        {"fecha": "2025-10-01", "rival": "Arsenal",         "gf": 0, "gc": 4, "resultado": "L", "corners": 5,  "tarjetas": 3}
+      ]
+    },
+    "Bayern München": {
+      "clasificado": false,
+      "ultimos_5": [
+        {"fecha": "2026-03-10", "rival": "Atalanta",        "gf": 6, "gc": 1, "resultado": "W", "corners": 12, "tarjetas": 2},
+        {"fecha": "2026-01-21", "rival": "Union Saint-Gilloise","gf": 2, "gc": 0, "resultado": "W", "corners": 10, "tarjetas": 2},
+        {"fecha": "2025-12-09", "rival": "Sporting CP",     "gf": 3, "gc": 1, "resultado": "W", "corners": 11, "tarjetas": 3},
+        {"fecha": "2025-11-26", "rival": "Arsenal",         "gf": 1, "gc": 3, "resultado": "L", "corners": 8,  "tarjetas": 3},
+        {"fecha": "2025-11-04", "rival": "PSG",             "gf": 2, "gc": 1, "resultado": "W", "corners": 9,  "tarjetas": 2}
+      ]
+    },
+    "Liverpool": {
+      "clasificado": false,
+      "ultimos_5": [
+        {"fecha": "2026-03-10", "rival": "Galatasaray",     "gf": 0, "gc": 1, "resultado": "L", "corners": 8,  "tarjetas": 3},
+        {"fecha": "2026-01-21", "rival": "Marseille",       "gf": 3, "gc": 0, "resultado": "W", "corners": 11, "tarjetas": 2},
+        {"fecha": "2025-12-09", "rival": "Inter",           "gf": 1, "gc": 0, "resultado": "W", "corners": 9,  "tarjetas": 3},
+        {"fecha": "2025-11-26", "rival": "PSV Eindhoven",   "gf": 1, "gc": 4, "resultado": "L", "corners": 7,  "tarjetas": 4},
+        {"fecha": "2025-11-04", "rival": "Real Madrid",     "gf": 1, "gc": 0, "resultado": "W", "corners": 10, "tarjetas": 3}
+      ]
+    },
+    "Manchester City": {
+      "clasificado": false,
+      "ultimos_5": [
+        {"fecha": "2026-03-17", "rival": "Real Madrid",     "gf": 1, "gc": 2, "resultado": "L", "corners": 6,  "tarjetas": 3},
+        {"fecha": "2026-03-11", "rival": "Real Madrid",     "gf": 0, "gc": 3, "resultado": "L", "corners": 5,  "tarjetas": 2},
+        {"fecha": "2026-01-20", "rival": "Bodø/Glimt",     "gf": 1, "gc": 3, "resultado": "L", "corners": 7,  "tarjetas": 3},
+        {"fecha": "2025-12-10", "rival": "Real Madrid",     "gf": 2, "gc": 1, "resultado": "W", "corners": 8,  "tarjetas": 4},
+        {"fecha": "2025-11-25", "rival": "Bayer Leverkusen","gf": 0, "gc": 2, "resultado": "L", "corners": 6,  "tarjetas": 3}
+      ]
+    },
+    "Newcastle United": {
+      "clasificado": false,
+      "ultimos_5": [
+        {"fecha": "2026-03-11", "rival": "Barcelona",       "gf": 1, "gc": 1, "resultado": "D", "corners": 8,  "tarjetas": 3},
+        {"fecha": "2026-01-21", "rival": "PSV Eindhoven",   "gf": 3, "gc": 0, "resultado": "W", "corners": 10, "tarjetas": 2},
+        {"fecha": "2025-12-10", "rival": "Bayer Leverkusen","gf": 2, "gc": 2, "resultado": "D", "corners": 9,  "tarjetas": 4},
+        {"fecha": "2025-10-01", "rival": "Benfica",         "gf": 3, "gc": 0, "resultado": "W", "corners": 11, "tarjetas": 2},
+        {"fecha": "2025-09-18", "rival": "Barcelona",       "gf": 1, "gc": 2, "resultado": "L", "corners": 7,  "tarjetas": 3}
+      ]
+    }
+  }
+}
