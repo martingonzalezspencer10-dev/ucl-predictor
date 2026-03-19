@@ -1,0 +1,198 @@
+{
+  "ultima_actualizacion": "2026-03-19",
+  "liga": "Primera División Chile 2026",
+  "jornada_actual": 8,
+  "proximos_partidos": [
+    {
+      "id": 1,
+      "fecha": "2026-03-21",
+      "hora": "18:00",
+      "local": "Colo-Colo",
+      "visitante": "Universidad de Chile",
+      "estadio": "Estadio Monumental",
+      "jornada": 9
+    },
+    {
+      "id": 2,
+      "fecha": "2026-03-21",
+      "hora": "20:30",
+      "local": "Universidad Católica",
+      "visitante": "Huachipato",
+      "estadio": "Estadio San Carlos de Apoquindo",
+      "jornada": 9
+    },
+    {
+      "id": 3,
+      "fecha": "2026-03-22",
+      "hora": "16:00",
+      "local": "Cobreloa",
+      "visitante": "Palestino",
+      "estadio": "Estadio El Cobre",
+      "jornada": 9
+    },
+    {
+      "id": 4,
+      "fecha": "2026-03-22",
+      "hora": "18:30",
+      "local": "Audax Italiano",
+      "visitante": "Cobresal",
+      "estadio": "Estadio Bicentenario La Florida",
+      "jornada": 9
+    },
+    {
+      "id": 5,
+      "fecha": "2026-03-22",
+      "hora": "20:30",
+      "local": "Deportes Iquique",
+      "visitante": "Everton",
+      "estadio": "Estadio Cavancha",
+      "jornada": 9
+    },
+    {
+      "id": 6,
+      "fecha": "2026-03-23",
+      "hora": "18:00",
+      "local": "O'Higgins",
+      "visitante": "Unión Española",
+      "estadio": "Estadio El Teniente",
+      "jornada": 9
+    },
+    {
+      "id": 7,
+      "fecha": "2026-03-23",
+      "hora": "20:30",
+      "local": "Deportes Antofagasta",
+      "visitante": "Ñublense",
+      "estadio": "Estadio Regional Calvo y Bascuñán",
+      "jornada": 9
+    }
+  ],
+  "equipos": {
+    "Colo-Colo": {
+      "ultimos_5": [
+        {"fecha": "2026-03-15", "rival": "O'Higgins",        "gf": 3, "gc": 0, "resultado": "W", "corners": 8,  "tarjetas": 2},
+        {"fecha": "2026-03-08", "rival": "Audax Italiano",   "gf": 2, "gc": 1, "resultado": "W", "corners": 7,  "tarjetas": 3},
+        {"fecha": "2026-03-01", "rival": "Palestino",        "gf": 1, "gc": 1, "resultado": "D", "corners": 6,  "tarjetas": 2},
+        {"fecha": "2026-02-22", "rival": "Cobreloa",         "gf": 2, "gc": 0, "resultado": "W", "corners": 9,  "tarjetas": 1},
+        {"fecha": "2026-02-15", "rival": "Ñublense",         "gf": 3, "gc": 1, "resultado": "W", "corners": 10, "tarjetas": 3}
+      ]
+    },
+    "Universidad de Chile": {
+      "ultimos_5": [
+        {"fecha": "2026-03-15", "rival": "Cobresal",         "gf": 2, "gc": 0, "resultado": "W", "corners": 7,  "tarjetas": 2},
+        {"fecha": "2026-03-08", "rival": "Everton",          "gf": 1, "gc": 1, "resultado": "D", "corners": 6,  "tarjetas": 3},
+        {"fecha": "2026-03-01", "rival": "Unión Española",   "gf": 3, "gc": 2, "resultado": "W", "corners": 8,  "tarjetas": 4},
+        {"fecha": "2026-02-22", "rival": "Huachipato",       "gf": 0, "gc": 1, "resultado": "L", "corners": 5,  "tarjetas": 2},
+        {"fecha": "2026-02-15", "rival": "Deportes Iquique", "gf": 2, "gc": 0, "resultado": "W", "corners": 9,  "tarjetas": 2}
+      ]
+    },
+    "Universidad Católica": {
+      "ultimos_5": [
+        {"fecha": "2026-03-15", "rival": "Ñublense",         "gf": 2, "gc": 1, "resultado": "W", "corners": 8,  "tarjetas": 2},
+        {"fecha": "2026-03-08", "rival": "Cobreloa",         "gf": 3, "gc": 0, "resultado": "W", "corners": 9,  "tarjetas": 1},
+        {"fecha": "2026-03-01", "rival": "Cobresal",         "gf": 1, "gc": 0, "resultado": "W", "corners": 7,  "tarjetas": 2},
+        {"fecha": "2026-02-22", "rival": "O'Higgins",        "gf": 2, "gc": 2, "resultado": "D", "corners": 6,  "tarjetas": 3},
+        {"fecha": "2026-02-15", "rival": "Audax Italiano",   "gf": 1, "gc": 0, "resultado": "W", "corners": 8,  "tarjetas": 2}
+      ]
+    },
+    "Huachipato": {
+      "ultimos_5": [
+        {"fecha": "2026-03-15", "rival": "Deportes Antofagasta","gf": 2,"gc": 1,"resultado": "W", "corners": 7,  "tarjetas": 3},
+        {"fecha": "2026-03-08", "rival": "Palestino",        "gf": 1, "gc": 2, "resultado": "L", "corners": 5,  "tarjetas": 4},
+        {"fecha": "2026-03-01", "rival": "Everton",          "gf": 2, "gc": 0, "resultado": "W", "corners": 8,  "tarjetas": 2},
+        {"fecha": "2026-02-22", "rival": "Universidad de Chile","gf":1,"gc": 0,"resultado": "W", "corners": 6,  "tarjetas": 3},
+        {"fecha": "2026-02-15", "rival": "Unión Española",   "gf": 0, "gc": 0, "resultado": "D", "corners": 5,  "tarjetas": 2}
+      ]
+    },
+    "Cobreloa": {
+      "ultimos_5": [
+        {"fecha": "2026-03-15", "rival": "Deportes Iquique", "gf": 1, "gc": 0, "resultado": "W", "corners": 6,  "tarjetas": 3},
+        {"fecha": "2026-03-08", "rival": "Universidad Católica","gf":0,"gc": 3,"resultado": "L", "corners": 4,  "tarjetas": 4},
+        {"fecha": "2026-03-01", "rival": "Audax Italiano",   "gf": 1, "gc": 1, "resultado": "D", "corners": 5,  "tarjetas": 3},
+        {"fecha": "2026-02-22", "rival": "Colo-Colo",        "gf": 0, "gc": 2, "resultado": "L", "corners": 4,  "tarjetas": 3},
+        {"fecha": "2026-02-15", "rival": "O'Higgins",        "gf": 2, "gc": 1, "resultado": "W", "corners": 7,  "tarjetas": 2}
+      ]
+    },
+    "Palestino": {
+      "ultimos_5": [
+        {"fecha": "2026-03-15", "rival": "Unión Española",   "gf": 2, "gc": 1, "resultado": "W", "corners": 7,  "tarjetas": 3},
+        {"fecha": "2026-03-08", "rival": "Huachipato",       "gf": 2, "gc": 1, "resultado": "W", "corners": 8,  "tarjetas": 2},
+        {"fecha": "2026-03-01", "rival": "Colo-Colo",        "gf": 1, "gc": 1, "resultado": "D", "corners": 6,  "tarjetas": 4},
+        {"fecha": "2026-02-22", "rival": "Ñublense",         "gf": 1, "gc": 0, "resultado": "W", "corners": 7,  "tarjetas": 2},
+        {"fecha": "2026-02-15", "rival": "Cobresal",         "gf": 0, "gc": 1, "resultado": "L", "corners": 5,  "tarjetas": 3}
+      ]
+    },
+    "Audax Italiano": {
+      "ultimos_5": [
+        {"fecha": "2026-03-15", "rival": "Everton",          "gf": 1, "gc": 0, "resultado": "W", "corners": 6,  "tarjetas": 2},
+        {"fecha": "2026-03-08", "rival": "Colo-Colo",        "gf": 1, "gc": 2, "resultado": "L", "corners": 5,  "tarjetas": 3},
+        {"fecha": "2026-03-01", "rival": "Cobreloa",         "gf": 1, "gc": 1, "resultado": "D", "corners": 6,  "tarjetas": 3},
+        {"fecha": "2026-02-22", "rival": "Deportes Iquique", "gf": 2, "gc": 0, "resultado": "W", "corners": 7,  "tarjetas": 2},
+        {"fecha": "2026-02-15", "rival": "Universidad Católica","gf":0,"gc": 1,"resultado": "L", "corners": 4,  "tarjetas": 2}
+      ]
+    },
+    "Cobresal": {
+      "ultimos_5": [
+        {"fecha": "2026-03-15", "rival": "Universidad de Chile","gf":0,"gc": 2,"resultado": "L", "corners": 4,  "tarjetas": 3},
+        {"fecha": "2026-03-08", "rival": "Deportes Antofagasta","gf":1,"gc": 1,"resultado": "D","corners": 5,  "tarjetas": 2},
+        {"fecha": "2026-03-01", "rival": "Universidad Católica","gf":0,"gc": 1,"resultado": "L","corners": 3,  "tarjetas": 3},
+        {"fecha": "2026-02-22", "rival": "Ñublense",         "gf": 2, "gc": 1, "resultado": "W", "corners": 6,  "tarjetas": 2},
+        {"fecha": "2026-02-15", "rival": "Palestino",        "gf": 1, "gc": 0, "resultado": "W", "corners": 5,  "tarjetas": 2}
+      ]
+    },
+    "Deportes Iquique": {
+      "ultimos_5": [
+        {"fecha": "2026-03-15", "rival": "Cobreloa",         "gf": 0, "gc": 1, "resultado": "L", "corners": 5,  "tarjetas": 3},
+        {"fecha": "2026-03-08", "rival": "O'Higgins",        "gf": 1, "gc": 2, "resultado": "L", "corners": 4,  "tarjetas": 4},
+        {"fecha": "2026-03-01", "rival": "Unión Española",   "gf": 1, "gc": 1, "resultado": "D", "corners": 6,  "tarjetas": 3},
+        {"fecha": "2026-02-22", "rival": "Audax Italiano",   "gf": 0, "gc": 2, "resultado": "L", "corners": 4,  "tarjetas": 3},
+        {"fecha": "2026-02-15", "rival": "Universidad de Chile","gf":0,"gc": 2,"resultado": "L", "corners": 4,  "tarjetas": 2}
+      ]
+    },
+    "Everton": {
+      "ultimos_5": [
+        {"fecha": "2026-03-15", "rival": "Audax Italiano",   "gf": 0, "gc": 1, "resultado": "L", "corners": 5,  "tarjetas": 3},
+        {"fecha": "2026-03-08", "rival": "Universidad de Chile","gf":1,"gc": 1,"resultado": "D", "corners": 6,  "tarjetas": 2},
+        {"fecha": "2026-03-01", "rival": "Deportes Antofagasta","gf":2,"gc": 0,"resultado": "W","corners": 7,  "tarjetas": 2},
+        {"fecha": "2026-02-22", "rival": "Palestino",        "gf": 1, "gc": 2, "resultado": "L", "corners": 5,  "tarjetas": 3},
+        {"fecha": "2026-02-15", "rival": "Huachipato",       "gf": 0, "gc": 2, "resultado": "L", "corners": 4,  "tarjetas": 3}
+      ]
+    },
+    "O'Higgins": {
+      "ultimos_5": [
+        {"fecha": "2026-03-15", "rival": "Colo-Colo",        "gf": 0, "gc": 3, "resultado": "L", "corners": 4,  "tarjetas": 3},
+        {"fecha": "2026-03-08", "rival": "Deportes Iquique", "gf": 2, "gc": 1, "resultado": "W", "corners": 7,  "tarjetas": 2},
+        {"fecha": "2026-03-01", "rival": "Ñublense",         "gf": 1, "gc": 0, "resultado": "W", "corners": 6,  "tarjetas": 2},
+        {"fecha": "2026-02-22", "rival": "Universidad Católica","gf":2,"gc": 2,"resultado": "D","corners": 7,  "tarjetas": 3},
+        {"fecha": "2026-02-15", "rival": "Cobreloa",         "gf": 1, "gc": 2, "resultado": "L", "corners": 5,  "tarjetas": 3}
+      ]
+    },
+    "Unión Española": {
+      "ultimos_5": [
+        {"fecha": "2026-03-15", "rival": "Palestino",        "gf": 1, "gc": 2, "resultado": "L", "corners": 5,  "tarjetas": 3},
+        {"fecha": "2026-03-08", "rival": "Cobresal",         "gf": 2, "gc": 0, "resultado": "W", "corners": 7,  "tarjetas": 2},
+        {"fecha": "2026-03-01", "rival": "Universidad de Chile","gf":2,"gc": 3,"resultado": "L","corners": 6,  "tarjetas": 4},
+        {"fecha": "2026-02-22", "rival": "Deportes Antofagasta","gf":1,"gc": 0,"resultado": "W","corners": 6,  "tarjetas": 2},
+        {"fecha": "2026-02-15", "rival": "Huachipato",       "gf": 0, "gc": 0, "resultado": "D", "corners": 5,  "tarjetas": 2}
+      ]
+    },
+    "Deportes Antofagasta": {
+      "ultimos_5": [
+        {"fecha": "2026-03-15", "rival": "Huachipato",       "gf": 1, "gc": 2, "resultado": "L", "corners": 5,  "tarjetas": 3},
+        {"fecha": "2026-03-08", "rival": "Cobresal",         "gf": 1, "gc": 1, "resultado": "D", "corners": 5,  "tarjetas": 2},
+        {"fecha": "2026-03-01", "rival": "Everton",          "gf": 0, "gc": 2, "resultado": "L", "corners": 4,  "tarjetas": 3},
+        {"fecha": "2026-02-22", "rival": "Unión Española",   "gf": 0, "gc": 1, "resultado": "L", "corners": 4,  "tarjetas": 2},
+        {"fecha": "2026-02-15", "rival": "Cobreloa",         "gf": 1, "gc": 1, "resultado": "D", "corners": 5,  "tarjetas": 3}
+      ]
+    },
+    "Ñublense": {
+      "ultimos_5": [
+        {"fecha": "2026-03-15", "rival": "Universidad Católica","gf":1,"gc": 2,"resultado": "L","corners": 5,  "tarjetas": 3},
+        {"fecha": "2026-03-08", "rival": "Unión Española",   "gf": 1, "gc": 0, "resultado": "W", "corners": 6,  "tarjetas": 2},
+        {"fecha": "2026-03-01", "rival": "O'Higgins",        "gf": 0, "gc": 1, "resultado": "L", "corners": 4,  "tarjetas": 3},
+        {"fecha": "2026-02-22", "rival": "Palestino",        "gf": 0, "gc": 1, "resultado": "L", "corners": 4,  "tarjetas": 2},
+        {"fecha": "2026-02-15", "rival": "Colo-Colo",        "gf": 1, "gc": 3, "resultado": "L", "corners": 5,  "tarjetas": 3}
+      ]
+    }
+  }
+}
